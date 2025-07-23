@@ -11,7 +11,7 @@ import (
 
 // regex to match the [pasta: ](path)
 // $1 = title (including pasta); $2 = path
-var re = regexp.MustCompile(`\[(pasta:.*)\]\((.*)\)`)
+var re = regexp.MustCompile(`\[\s*(pasta\s*:\s*.*)\s*\]\s*\((.*)\)`)
 
 func pasta(builder *strings.Builder, relPath string) {
     absolutePath, err := filepath.Abs(relPath)
