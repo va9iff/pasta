@@ -8,9 +8,9 @@ Right now Pasta only works with relative file pathes, not urls.
 
 ## Cool things about Pasta
 
-1. Recursive nature allows us flexible composition. `a.md` embeds `b.md` and
-   `b.md` embeds `c.md`, then the generated output would include `a.md`, `b.md`
-and `c.md` all in the correct places
+1. Recursive nature allows us to have flexible composition. `a.md` embeds
+   `b.md` and `b.md` embeds `c.md`, then the generated output would include
+`a.md`, `b.md` and `c.md` all in the correct places
 
 2. Pasta links are valid markdown links and would have a working link to the
    embedded documents in markdown editors even without Pasta
