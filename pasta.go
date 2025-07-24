@@ -9,9 +9,8 @@ import (
     "strings"
 )
 
-// regex to match the [pasta: ](path)
-// $1 = title (including pasta); $2 = path
-var re = regexp.MustCompile(`\[\s*(pasta\s*:\s*.*)\s*\]\s*\((.*)\)`)
+// $before [pasta: $title] ($path) $after
+var re = regexp.MustCompile(`(.*)\[\s*(pasta\s*:\s*.*)\s*\]\s*\((.*)\)(.*)`)
 
 func pasta(builder *strings.Builder, relPath string) {
     absolutePath, err := filepath.Abs(relPath)
@@ -21,7 +20,6 @@ func pasta(builder *strings.Builder, relPath string) {
         fmt.Printf("pasta: %s\n", absolutePath)
     }
 
-    // Open the file
     file, err := os.Open(absolutePath)
     if err != nil { fmt.Println("Error opening file:", err); return }
     defer file.Close()
@@ -29,14 +27,20 @@ func pasta(builder *strings.Builder, relPath string) {
     scanner := bufio.NewScanner(file)
     if err := scanner.Err(); err != nil { fmt.Println("Error reading file:", err); return }
 
+    first := true // append \n before every line except first line.
     for scanner.Scan() {
+        if !first { builder.WriteString("\n") }
+        first = false // so you can use it for embedding assets like "[pasta:](sound.mp3)"
         line := scanner.Text()
         if re.MatchString(line) {
-            embeddingPath, err := filepath.Abs(re.ReplaceAllString(line, "$2"))
+            matches := re.FindStringSubmatch(line)
+            embeddingPath, err := filepath.Abs(matches[3])
             if err != nil { fmt.Println("Error getting absolute path of embedded document:", err); return }
+            builder.WriteString(matches[1])
             pasta(builder, embeddingPath)
+            builder.WriteString(matches[4])
         } else {
-            builder.WriteString(line + "\n")
+            builder.WriteString(line)
         }
     }
 

@@ -24,9 +24,8 @@ file, Pasta got you
 ## Examples
 
 This link will be replaced with `./subdoc.md`'s content in the generated
-output. You have to put the link in a standalone line with no other text to get
-it embedded. Don't forget to cd into your generated document's folder before
-running pasta.
+output. Don't forget to cd into your generated document's folder before running
+pasta.
 
 
 ```md
