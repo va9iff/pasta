@@ -1,5 +1,5 @@
 # Pasta
-## Paste markdowns in markdowns
+## Paste text with markdown
 
 Needed a simple recursive text composition tool with no destructive syntax.
 Decided to use markdown links with `pasta: ` prefix in their title to denote
@@ -16,6 +16,10 @@ and `c.md` all in the correct places
    embedded documents in markdown editors even without Pasta
 
 3. Written in Go, can easily be a part of any build process
+
+4. Doesn't care about filetypes, Markdown is just the syntax it uses. Plain
+   text, HTML, CSV or code, anything that requires pasting text from another
+file, Pasta got you
 
 ## Examples
 
