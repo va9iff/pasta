@@ -52,7 +52,7 @@ pasta input.md
 
 pasta input.md output.md
 
- ```
+```
 
 Even if you decide to leave Pasta completely, your markdown will still be
 intact. I don't like vendorlock
