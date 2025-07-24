@@ -33,7 +33,6 @@ running pasta.
 
 [pasta: my sub document](./subdoc.md)
 
-
 ```
 
 Not all links are embedded. Links with no `pasta: ` prefix stays untouched
